@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkhumpm3t2yq"]
+
+[ext_resource type="Script" path="res://src/xr_camera_3d.gd" id="1_2f13o"]
+[ext_resource type="Script" path="res://src/collision_body.gd" id="2_65ljf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4pqjb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4fw3g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s43ll"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_su80x"]
+
+[node name="player" type="Node3D"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+script = ExtResource("1_2f13o")
+
+[node name="XRController3D_leftH" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="kloc" type="RigidBody3D" parent="XROrigin3D/XRController3D_leftH"]
+disable_mode = 2
+physics_material_override = SubResource("PhysicsMaterial_4pqjb")
+gravity_scale = 0.0
+can_sleep = false
+freeze_mode = 1
+script = ExtResource("2_65ljf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRController3D_leftH/kloc"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_4fw3g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D/XRController3D_leftH/kloc"]
+physics_interpolation_mode = 2
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_s43ll")
+skeleton = NodePath("../..")
+
+[node name="XRController3D_rightH" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="kloc" type="RigidBody3D" parent="XROrigin3D/XRController3D_rightH"]
+disable_mode = 2
+physics_material_override = SubResource("PhysicsMaterial_4pqjb")
+gravity_scale = 0.0
+can_sleep = false
+freeze_mode = 1
+script = ExtResource("2_65ljf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRController3D_rightH/kloc"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_4fw3g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="XROrigin3D/XRController3D_rightH/kloc"]
+physics_interpolation_mode = 2
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_s43ll")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_su80x")

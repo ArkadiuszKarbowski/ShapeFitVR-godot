@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b6odb0dye7siy"
+path="res://.godot/imported/sciana_1_left.obj-f64eb5528a5db2bd0a316cf1b376f970.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sciana_1_left.obj-f64eb5528a5db2bd0a316cf1b376f970.mesh"]
+
+source_file="res://models/blender_stare/sciana_1_left.obj"
+dest_files=["res://.godot/imported/sciana_1_left.obj-f64eb5528a5db2bd0a316cf1b376f970.mesh", "res://.godot/imported/sciana_1_left.obj-f64eb5528a5db2bd0a316cf1b376f970.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

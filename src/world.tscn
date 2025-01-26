@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bkhumpm3t2yq" path="res://src/player.tscn" id="2_tq3wr"]
 [ext_resource type="Script" path="res://src/collision_body.gd" id="3_12jpw"]
 [ext_resource type="Texture2D" uid="uid://bu52e63ljxhaa" path="res://Textures/ground/blue_metal_plate_diff_4k.jpg" id="3_v7640"]
-[ext_resource type="Script" path="res://models/wall.gd" id="4_wkafb"]
+[ext_resource type="Script" path="res://models/blender/wall_template.gd" id="4_7ic2f"]
 [ext_resource type="Texture2D" uid="uid://cmeiqp8y5lqrj" path="res://Textures/wall/stone_tile_wall_disp_4k.png" id="7_utn5f"]
 [ext_resource type="PackedScene" uid="uid://bgbvlsbc8q2m8" path="res://models/blender/sciana_1_left.blend" id="7_x56nc"]
 [ext_resource type="Script" path="res://src/score.gd" id="8_ngefq"]
@@ -36,15 +36,15 @@ script = ExtResource("1_h26pl")
 script = ExtResource("1_1u4v0")
 
 [node name="sciana_1_right" parent="wall_spawner" instance=ExtResource("7_x56nc")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -17.2684)
-script = ExtResource("4_wkafb")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.63657, -0.978963, -19.1914)
+script = ExtResource("4_7ic2f")
 
 [node name="sciana_wycieta" parent="wall_spawner/sciana_1_right/sciana_wycieta" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_50g31")
 
 [node name="sciana_1_left" parent="wall_spawner" instance=ExtResource("7_x56nc")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -1, -16.8561)
-script = ExtResource("4_wkafb")
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.48332, -1, -16.8561)
+script = ExtResource("4_7ic2f")
 
 [node name="sciana_wycieta" parent="wall_spawner/sciana_1_left/sciana_wycieta" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_50g31")
@@ -62,7 +62,7 @@ mesh = SubResource("PlaneMesh_disoi")
 surface_material_override/0 = SubResource("StandardMaterial3D_4p8ic")
 
 [node name="kloc" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 4.72674, 0.00598872, -10.464)
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 3.32888, 0.00598872, -13.6452)
 physics_material_override = SubResource("PhysicsMaterial_0bkev")
 gravity_scale = 0.0
 can_sleep = false

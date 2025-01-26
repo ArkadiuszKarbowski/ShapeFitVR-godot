@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var spawn_interval_min: float = 1.0
+@export var spawn_interval_min: float = 2.0
 @export var spawn_interval_max: float = 3.0
 @export var max_concurrent_objects: int = 5
 @export var script_path: String = "res://models/wall.gd"
@@ -8,19 +8,18 @@ extends Node3D
 var object_script: Script
 var spawn_timer: float = 0.0
 var current_objects: Array = []
-var possible_objects: Array[PackedScene] = []
+var template_objects: Array[Node3D] = []
 
 func _ready():
+	print("Ready called")
 	object_script = load(script_path)
 	for child in get_children():
 		if child is Node3D:
-			var scene_path = child.scene_file_path
-			if scene_path:
-				var packed_scene = load(scene_path)
-				if packed_scene:
-					possible_objects.append(packed_scene)
-					child.queue_free()
+			print("Found child: ", child.name)
+			child.visible = false
+			template_objects.append(child)
 	
+	print("Template objects: ", template_objects.size())
 	randomize()
 	spawn_timer = randf_range(spawn_interval_min, spawn_interval_max)
 
@@ -28,17 +27,18 @@ func _process(delta):
 	spawn_timer -= delta
 	
 	if spawn_timer <= 0:
+		print("Spawning object")
 		spawn_object()
 		spawn_timer = randf_range(spawn_interval_min, spawn_interval_max)
-	
-	current_objects = current_objects.filter(func(obj): return is_instance_valid(obj))
 
 func spawn_object():
-	if current_objects.size() >= max_concurrent_objects or possible_objects.is_empty():
+	if current_objects.size() >= max_concurrent_objects or template_objects.is_empty():
+		print("Cannot spawn: ", current_objects.size(), " ", template_objects.is_empty())
 		return
 		
-	var scene = possible_objects.pick_random()
-	var instance = scene.instantiate()
+	var template = template_objects.pick_random()
+	var instance = template.duplicate()
+	instance.visible = true
 	
 	if object_script:
 		instance.set_script(object_script)

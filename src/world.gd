@@ -14,7 +14,7 @@ func _ready() -> void:
 	xr_controller.button_pressed.connect(_on_button_pressed)
 	
 	game_over_label = Label3D.new()
-	game_over_label.text = "GAME OVER\nClick A to restart"
+	game_over_label.text = "GAME OVER\nClick right trigger to restart"
 	game_over_label.font_size = 24
 	game_over_label.modulate = Color.RED
 	game_over_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
@@ -66,7 +66,7 @@ func show_game_over():
 			node.set_process(false)
 
 func _on_button_pressed(button_name: String):
-	if button_name == "a_button" and game_over_label.visible:
+	if button_name == "trigger" and game_over_label.visible:
 		restart_game()
 
 func restart_game():

@@ -12,6 +12,8 @@ func _ready() -> void:
 		get_viewport().use_xr = true
 	
 	xr_controller.button_pressed.connect(_on_button_pressed)
+	if not xr_controller.has_signal("button_pressed"):
+		print("WARNING: button_pressed signal not found on XR Controller!")
 	
 	game_over_label = Label3D.new()
 	game_over_label.text = "GAME OVER\nClick right trigger to restart"
@@ -22,9 +24,9 @@ func _ready() -> void:
 	add_child(game_over_label)
 	
 	_find_pausable_nodes(self)
-	print("Znaleziono ", pausable_nodes.size(), " obiektów do pauzowania")
-	for node in pausable_nodes:
-		print("Obiekt do pauzowania: ", node.name)
+	#print("Znaleziono ", pausable_nodes.size(), " obiektów do pauzowania")
+	#for node in pausable_nodes:
+		#print("Obiekt do pauzowania: ", node.name)
 
 func _find_pausable_nodes(node: Node):
 	if node.is_in_group("pausable"):
@@ -68,6 +70,14 @@ func show_game_over():
 func _on_button_pressed(button_name: String):
 	if button_name == "trigger" and game_over_label.visible:
 		restart_game()
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_T:
+				xr_controller.emit_signal("button_pressed", "trigger")
+				print("button pressed")
+
 
 func restart_game():
 	is_paused = false  

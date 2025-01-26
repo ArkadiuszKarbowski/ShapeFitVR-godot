@@ -44,7 +44,7 @@ mesh = SubResource("PlaneMesh_disoi")
 surface_material_override/0 = SubResource("StandardMaterial3D_4p8ic")
 
 [node name="kloc" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 7.53648, 0.00598872, -8.33981)
+transform = Transform3D(1, 0, 0, 0, -1, 1.50996e-07, 0, -1.50996e-07, -1, 4.72674, 0.00598872, -10.464)
 physics_material_override = SubResource("PhysicsMaterial_0bkev")
 gravity_scale = 0.0
 can_sleep = false

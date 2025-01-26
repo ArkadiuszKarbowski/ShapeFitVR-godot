@@ -5,7 +5,7 @@ extends Node3D
 @export var score_threshold: Vector3 = Vector3(0, 0, 1)
 
 @onready var wall_body = $sciana_wycieta 
-@onready var score = $"../score"
+@onready var score = get_node("/root/world/score")
 
 var flag : bool = false
 var velocity = move_direction * speed
@@ -37,8 +37,7 @@ func _ready():
 func _on_body_entered(body):
 	if body is RigidBody3D:
 		print("Kolizja z: ", body.name)
-		owner.show_game_over()
-		
+		get_node("/root/world").show_game_over()		
 		
 func _on_score_threshold_crossed(body: RigidBody3D):
 	if score:

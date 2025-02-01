@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkhumpm3t2yq"]
+[gd_scene load_steps=7 format=3 uid="uid://bkhumpm3t2yq"]
 
 [ext_resource type="Script" path="res://src/xr_camera_3d.gd" id="1_2f13o"]
 [ext_resource type="Script" path="res://src/collision_body.gd" id="2_65ljf"]
@@ -8,8 +8,6 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4pqjb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4fw3g"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_su80x"]
 
 [node name="player" type="Node3D"]
 
@@ -21,7 +19,9 @@ script = ExtResource("1_2f13o")
 [node name="XRController3D_leftH" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
-[node name="kloc" type="RigidBody3D" parent="XROrigin3D/XRController3D_leftH"]
+[node name="LeftHand" parent="XROrigin3D/XRController3D_leftH" instance=ExtResource("3_vtmwv")]
+
+[node name="kloc" type="RigidBody3D" parent="XROrigin3D/XRController3D_leftH/LeftHand"]
 disable_mode = 2
 physics_material_override = SubResource("PhysicsMaterial_4pqjb")
 gravity_scale = 0.0
@@ -29,17 +29,17 @@ can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_65ljf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRController3D_leftH/kloc"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRController3D_leftH/LeftHand/kloc"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_4fw3g")
-
-[node name="LeftHand" parent="XROrigin3D/XRController3D_leftH" instance=ExtResource("3_vtmwv")]
 
 [node name="XRController3D_rightH" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0155029, 0, 0.00674152)
 tracker = &"right_hand"
 
-[node name="kloc" type="RigidBody3D" parent="XROrigin3D/XRController3D_rightH"]
+[node name="RightHand" parent="XROrigin3D/XRController3D_rightH" instance=ExtResource("4_h8wjq")]
+
+[node name="kloc" type="RigidBody3D" parent="XROrigin3D/XRController3D_rightH/RightHand"]
 visible = false
 disable_mode = 2
 physics_material_override = SubResource("PhysicsMaterial_4pqjb")
@@ -48,12 +48,6 @@ can_sleep = false
 freeze_mode = 1
 script = ExtResource("2_65ljf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRController3D_rightH/kloc"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRController3D_rightH/RightHand/kloc"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("BoxShape3D_4fw3g")
-
-[node name="RightHand" parent="XROrigin3D/XRController3D_rightH" instance=ExtResource("4_h8wjq")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_su80x")

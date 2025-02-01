@@ -2,7 +2,7 @@ extends Node3D
 
 @export var spawn_interval_min: float = 2.0
 @export var spawn_interval_max: float = 3.0
-@export var max_concurrent_objects: int = 5
+@export var max_concurrent_objects: int = 10
 @export var script_path: String = "res://models/wall.gd"
 
 var object_script: Script
@@ -40,6 +40,10 @@ func spawn_object():
 	var instance = template.duplicate()
 	instance.visible = true
 	
+	for child in instance.get_children():
+		if child is MeshInstance3D:
+			child.scale = Vector3(1,1,2)
+			
 	if object_script:
 		instance.set_script(object_script)
 	

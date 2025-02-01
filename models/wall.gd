@@ -40,12 +40,12 @@ func _physics_process(delta):
 	current_speed = base_speed * speed_multiplier
 	velocity = move_direction * current_speed
 	
-	print("Arm spread: %.2f m, Zone: %s, Speed: %.2f" % 
-		[arm_spread, 
-		"FAST" if speed_multiplier == max_speed_multiplier 
-		else "NORMAL" if speed_multiplier == normal_speed_multiplier 
-		else "SLOW", 
-		current_speed])
+	#print("Arm spread: %.2f m, Zone: %s, Speed: %.2f" % 
+		#[arm_spread, 
+		#"FAST" if speed_multiplier == max_speed_multiplier 
+		#else "NORMAL" if speed_multiplier == normal_speed_multiplier 
+		#else "SLOW", 
+		#current_speed])
 	
 	if wall_body:
 		wall_body.linear_velocity = velocity

@@ -11,8 +11,9 @@ func _ready() -> void:
 	if interface and interface.is_initialized():
 		get_viewport().use_xr = true
 	
-	xr_controller.button_pressed.connect(_on_button_pressed)
-	if not xr_controller.has_signal("button_pressed"):
+	if xr_controller.has_signal("button_pressed"):
+		xr_controller.button_pressed.connect(_on_button_pressed)
+	else:
 		print("WARNING: button_pressed signal not found on XR Controller!")
 	
 	game_over_label = Label3D.new()
@@ -68,15 +69,17 @@ func show_game_over():
 			node.set_process(false)
 
 func _on_button_pressed(button_name: String):
+	print("Button pressed: ", button_name)
 	if button_name == "trigger" and game_over_label.visible:
+		print("Trigger pressed with visible game over label")
 		restart_game()
 
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		match event.keycode:
-			KEY_T:
-				xr_controller.emit_signal("button_pressed", "trigger")
-				print("button pressed")
+#func _input(event):
+	#if event is InputEventKey and event.pressed:
+		#match event.keycode:
+			#KEY_T:
+				#xr_controller.emit_signal("button_pressed", "trigger")
+				#print("button pressed")
 
 
 func restart_game():

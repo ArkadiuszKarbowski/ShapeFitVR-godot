@@ -54,7 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 0.182489, 0.983208, 0, -0.983208, 0.182489, 
 shadow_enabled = true
 
 [node name="player" parent="." instance=ExtResource("2_tq3wr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.179342, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.808229, 0)
 
 [node name="ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.10125, 0, 0, 0, 1, 0, 0, 0, 21.2879, 0, -1, -10)
